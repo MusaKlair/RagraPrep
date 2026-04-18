@@ -1,0 +1,45 @@
+services:
+  db:
+    image: pgvector/pgvector:pg16
+    container_name: postgres-db
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin123
+      POSTGRES_DB: mydb
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - ragra_network
+
+  backend:
+    build: 
+      context: ./Backend
+    container_name: ragra-backend
+    ports:
+      - "3000:3000"
+    env_file:
+      - ./Backend/.env
+    depends_on:
+      - db
+    networks:
+      - ragra_network
+
+  frontend:
+    build: 
+      context: ./Frontend
+    container_name: ragra-frontend
+    ports:
+      - "3001:3001"
+    depends_on:
+      - backend
+    networks:
+      - ragra_network
+
+volumes:
+  postgres_data:
+
+networks:
+  ragra_network:
+    driver: bridge

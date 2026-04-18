@@ -28,10 +28,13 @@ This instance contains its own configuration and behaves like a standalone appli
    npm install
    ```
 
-2. **Start the Development Server**:
-   Once packages are installed, spin up the server:
+The isolated frontend works as a standalone UI project. By default, it is configured to proxy all `/api` calls to the Backend service running at `http://localhost:3000`.
+
+To run alongside the backend:
+1. Start the **Backend** project on port 3000.
+2. Start this **Frontend** project on port 3001 (or any other port):
    ```bash
-   npm run dev
+   npm run dev -- -p 3001
    ```
 
-The isolated frontend will boot up and be accessible locally at [http://localhost:3000](http://localhost:3000). Every screen and UI component will function exactly identically to the main application.
+The isolated frontend will boot up and be accessible locally at [http://localhost:3001](http://localhost:3001). Every screen and UI component will function exactly identically to the main application.
