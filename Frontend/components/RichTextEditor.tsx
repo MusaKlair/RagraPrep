@@ -51,193 +51,141 @@ function MenuBar({ editor }: { editor: Editor }) {
   });
 
   return (
-    <div className="border-b border-gray-200 p-2 flex flex-wrap gap-2 bg-gray-50 rounded-t-lg">
-      <div className="flex flex-wrap gap-2">
+    <div className="border-b border-neutral-200 p-2 flex flex-wrap gap-1 bg-neutral-50">
+      <div className="flex flex-wrap gap-1">
         <button
           onClick={() => editor.chain().focus().toggleBold().run()}
           disabled={!editorState.canBold}
-          className={`px-2.5 py-1.5 rounded text-xs font-medium border ${
-            editorState.isBold ? 'bg-blue-600 text-white border-blue-600' : 'bg-white text-gray-700 border-gray-200'
-          }`}
+          className={`px-2 py-1 transition-colors border font-mono text-[9px] uppercase tracking-widest ${editorState.isBold ? 'bg-neutral-900 text-white border-neutral-900' : 'bg-white text-neutral-500 border-neutral-200 hover:border-neutral-400'
+            }`}
         >
           Bold
         </button>
         <button
           onClick={() => editor.chain().focus().toggleItalic().run()}
           disabled={!editorState.canItalic}
-          className={`px-2.5 py-1.5 rounded text-xs font-medium border ${
-            editorState.isItalic ? 'bg-blue-600 text-white border-blue-600' : 'bg-white text-gray-700 border-gray-200'
-          }`}
+          className={`px-2 py-1 transition-colors border font-mono text-[9px] uppercase tracking-widest ${editorState.isItalic ? 'bg-neutral-900 text-white border-neutral-900' : 'bg-white text-neutral-500 border-neutral-200 hover:border-neutral-400'
+            }`}
         >
           Italic
         </button>
         <button
           onClick={() => editor.chain().focus().toggleStrike().run()}
           disabled={!editorState.canStrike}
-          className={`px-2.5 py-1.5 rounded text-xs font-medium border ${
-            editorState.isStrike ? 'bg-blue-600 text-white border-blue-600' : 'bg-white text-gray-700 border-gray-200'
-          }`}
+          className={`px-2 py-1 transition-colors border font-mono text-[9px] uppercase tracking-widest ${editorState.isStrike ? 'bg-neutral-900 text-white border-neutral-900' : 'bg-white text-neutral-500 border-neutral-200 hover:border-neutral-400'
+            }`}
         >
           Strike
         </button>
         <button
           onClick={() => editor.chain().focus().toggleCode().run()}
           disabled={!editorState.canCode}
-          className={`px-2.5 py-1.5 rounded text-xs font-medium border ${
-            editorState.isCode ? 'bg-blue-600 text-white border-blue-600' : 'bg-white text-gray-700 border-gray-200'
-          }`}
+          className={`px-2 py-1 transition-colors border font-mono text-[9px] uppercase tracking-widest ${editorState.isCode ? 'bg-emerald-500 text-white border-emerald-500' : 'bg-white text-neutral-500 border-neutral-200 hover:border-neutral-400'
+            }`}
         >
           Code
         </button>
         <button
           onClick={() => editor.chain().focus().unsetAllMarks().run()}
           disabled={!editorState.canClearMarks}
-          className="px-2.5 py-1.5 rounded text-xs font-medium border bg-white text-gray-700 border-gray-200 disabled:opacity-50"
+          className="px-2 py-1 border bg-white text-neutral-400 border-neutral-200 font-mono text-[9px] uppercase tracking-widest disabled:opacity-50 hover:text-neutral-900 transition-colors"
         >
           Clear marks
         </button>
         <button
           onClick={() => editor.chain().focus().clearNodes().run()}
-          className="px-2.5 py-1.5 rounded text-xs font-medium border bg-white text-gray-700 border-gray-200"
+          className="px-2 py-1 border bg-white text-neutral-400 border-neutral-200 font-mono text-[9px] uppercase tracking-widest hover:text-neutral-900 transition-colors"
         >
           Clear nodes
         </button>
-        <div className="w-px h-6 bg-gray-300 mx-1" />
+        <div className="w-px h-4 bg-neutral-200 mx-1 self-center" />
         <button
           onClick={() => editor.chain().focus().setParagraph().run()}
-          className={`px-2.5 py-1.5 rounded text-xs font-medium border ${
-            editorState.isParagraph
-              ? 'bg-blue-600 text-white border-blue-600'
-              : 'bg-white text-gray-700 border-gray-200'
-          }`}
+          className={`px-2 py-1 transition-colors border font-mono text-[9px] uppercase tracking-widest ${editorState.isParagraph
+            ? 'bg-neutral-900 text-white border-neutral-900'
+            : 'bg-white text-neutral-500 border-neutral-200 hover:border-neutral-400'
+            }`}
         >
-          Paragraph
+          P
         </button>
         <button
           onClick={() => editor.chain().focus().toggleHeading({ level: 1 }).run()}
-          className={`px-2.5 py-1.5 rounded text-xs font-medium border ${
-            editorState.isHeading1
-              ? 'bg-blue-600 text-white border-blue-600'
-              : 'bg-white text-gray-700 border-gray-200'
-          }`}
+          className={`px-2 py-1 transition-colors border font-mono text-[9px] uppercase tracking-widest ${editorState.isHeading1
+            ? 'bg-neutral-900 text-white border-neutral-900'
+            : 'bg-white text-neutral-500 border-neutral-200 hover:border-neutral-400'
+            }`}
         >
           H1
         </button>
         <button
           onClick={() => editor.chain().focus().toggleHeading({ level: 2 }).run()}
-          className={`px-2.5 py-1.5 rounded text-xs font-medium border ${
-            editorState.isHeading2
-              ? 'bg-blue-600 text-white border-blue-600'
-              : 'bg-white text-gray-700 border-gray-200'
-          }`}
+          className={`px-2 py-1 transition-colors border font-mono text-[9px] uppercase tracking-widest ${editorState.isHeading2
+            ? 'bg-neutral-900 text-white border-neutral-900'
+            : 'bg-white text-neutral-500 border-neutral-200 hover:border-neutral-400'
+            }`}
         >
           H2
         </button>
         <button
           onClick={() => editor.chain().focus().toggleHeading({ level: 3 }).run()}
-          className={`px-2.5 py-1.5 rounded text-xs font-medium border ${
-            editorState.isHeading3
-              ? 'bg-blue-600 text-white border-blue-600'
-              : 'bg-white text-gray-700 border-gray-200'
-          }`}
+          className={`px-2 py-1 transition-colors border font-mono text-[9px] uppercase tracking-widest ${editorState.isHeading3
+            ? 'bg-neutral-900 text-white border-neutral-900'
+            : 'bg-white text-neutral-500 border-neutral-200 hover:border-neutral-400'
+            }`}
         >
           H3
         </button>
         <button
-          onClick={() => editor.chain().focus().toggleHeading({ level: 4 }).run()}
-          className={`px-2.5 py-1.5 rounded text-xs font-medium border ${
-            editorState.isHeading4
-              ? 'bg-blue-600 text-white border-blue-600'
-              : 'bg-white text-gray-700 border-gray-200'
-          }`}
-        >
-          H4
-        </button>
-        <button
-          onClick={() => editor.chain().focus().toggleHeading({ level: 5 }).run()}
-          className={`px-2.5 py-1.5 rounded text-xs font-medium border ${
-            editorState.isHeading5
-              ? 'bg-blue-600 text-white border-blue-600'
-              : 'bg-white text-gray-700 border-gray-200'
-          }`}
-        >
-          H5
-        </button>
-        <button
-          onClick={() => editor.chain().focus().toggleHeading({ level: 6 }).run()}
-          className={`px-2.5 py-1.5 rounded text-xs font-medium border ${
-            editorState.isHeading6
-              ? 'bg-blue-600 text-white border-blue-600'
-              : 'bg-white text-gray-700 border-gray-200'
-          }`}
-        >
-          H6
-        </button>
-        <button
           onClick={() => editor.chain().focus().toggleBulletList().run()}
-          className={`px-2.5 py-1.5 rounded text-xs font-medium border ${
-            editorState.isBulletList
-              ? 'bg-blue-600 text-white border-blue-600'
-              : 'bg-white text-gray-700 border-gray-200'
-          }`}
+          className={`px-2 py-1 transition-colors border font-mono text-[9px] uppercase tracking-widest ${editorState.isBulletList
+            ? 'bg-neutral-900 text-white border-neutral-900'
+            : 'bg-white text-neutral-500 border-neutral-200 hover:border-neutral-400'
+            }`}
         >
-          Bullet list
+          List
         </button>
         <button
-          onClick={() => editor.chain().focus().toggleOrderedList().run()}
-          className={`px-2.5 py-1.5 rounded text-xs font-medium border ${
-            editorState.isOrderedList
-              ? 'bg-blue-600 text-white border-blue-600'
-              : 'bg-white text-gray-700 border-gray-200'
-          }`}
+          onClick={() => editor.chain().focus().toggleCodeBlock().run()}
+          className={`px-2 py-1 transition-colors border font-mono text-[9px] uppercase tracking-widest ${editorState.isCodeBlock
+            ? 'bg-emerald-500 text-white border-emerald-500'
+            : 'bg-white text-neutral-500 border-neutral-200 hover:border-neutral-400'
+            }`}
         >
-          Ordered list
-        </button>
-        <button
-          onClick={() => {
-            editor.chain().focus().toggleCodeBlock().run();
-          }}
-          className={`px-2.5 py-1.5 rounded text-xs font-medium border ${
-            editorState.isCodeBlock
-              ? 'bg-blue-600 text-white border-blue-600'
-              : 'bg-white text-gray-700 border-gray-200'
-          }`}
-        >
-          Code block
+          Code_Box
         </button>
         <button
           onClick={() => editor.chain().focus().toggleBlockquote().run()}
-          className={`px-2.5 py-1.5 rounded text-xs font-medium border ${
-            editorState.isBlockquote
-              ? 'bg-blue-600 text-white border-blue-600'
-              : 'bg-white text-gray-700 border-gray-200'
-          }`}
+          className={`px-2 py-1 transition-colors border font-mono text-[9px] uppercase tracking-widest ${editorState.isBlockquote
+            ? 'bg-neutral-900 text-white border-neutral-900'
+            : 'bg-white text-neutral-500 border-neutral-200 hover:border-neutral-400'
+            }`}
         >
-          Blockquote
+          Quote
         </button>
         <button
           onClick={() => editor.chain().focus().setHorizontalRule().run()}
-          className="px-2.5 py-1.5 rounded text-xs font-medium border bg-white text-gray-700 border-gray-200"
+          className="px-2 py-1 border bg-white text-neutral-400 border-neutral-200 font-mono text-[9px] uppercase tracking-widest hover:text-neutral-900 transition-colors"
         >
-          Horizontal rule
+          HR
         </button>
         <button
           onClick={() => editor.chain().focus().setHardBreak().run()}
-          className="px-2.5 py-1.5 rounded text-xs font-medium border bg-white text-gray-700 border-gray-200"
+          className="px-2 py-1 border bg-white text-neutral-400 border-neutral-200 font-mono text-[9px] uppercase tracking-widest hover:text-neutral-900 transition-colors"
         >
-          Hard break
+          BR
         </button>
+        <div className="w-px h-4 bg-neutral-200 mx-1 self-center" />
         <button
           onClick={() => editor.chain().focus().undo().run()}
           disabled={!editorState.canUndo}
-          className="px-2.5 py-1.5 rounded text-xs font-medium border bg-white text-gray-700 border-gray-200 disabled:opacity-50"
+          className="px-2 py-1 border bg-white text-neutral-400 border-neutral-200 font-mono text-[9px] uppercase tracking-widest disabled:opacity-50 hover:text-neutral-900 transition-colors"
         >
           Undo
         </button>
         <button
           onClick={() => editor.chain().focus().redo().run()}
           disabled={!editorState.canRedo}
-          className="px-2.5 py-1.5 rounded text-xs font-medium border bg-white text-gray-700 border-gray-200 disabled:opacity-50"
+          className="px-2 py-1 border bg-white text-neutral-400 border-neutral-200 font-mono text-[9px] uppercase tracking-widest disabled:opacity-50 hover:text-neutral-900 transition-colors"
         >
           Redo
         </button>
@@ -267,7 +215,7 @@ export default function RichTextEditor({ content, onChange, placeholder = 'Start
     editorProps: {
       attributes: {
         class:
-          'prose prose-sm sm:prose lg:prose-lg xl:prose-2xl mx-auto focus:outline-none min-h-[320px] p-4 text-gray-900 prose-headings:text-gray-900 prose-p:text-gray-900 prose-strong:text-gray-900 prose-ul:text-gray-900 prose-ol:text-gray-900 prose-li:text-gray-900 prose-code:text-red-600 prose-pre:bg-slate-800 prose-pre:text-slate-100',
+          'prose prose-neutral max-w-none focus:outline-none min-h-[320px] p-6 text-neutral-600 font-mono text-sm leading-relaxed',
       },
     },
     immediatelyRender: false,
@@ -282,16 +230,16 @@ export default function RichTextEditor({ content, onChange, placeholder = 'Start
 
   if (!mounted || !editor) {
     return (
-      <div className="border border-gray-300 rounded-lg min-h-[320px] p-4 bg-white">
-        <div className="text-gray-400">Loading editor...</div>
+      <div className="border border-neutral-200 min-h-[320px] p-6 bg-white flex items-center justify-center">
+        <div className="font-mono text-[10px] uppercase tracking-widest text-neutral-400 animate-pulse">Initializing Editor...</div>
       </div>
     );
   }
 
   return (
-    <div className="border border-gray-300 rounded-lg focus-within:ring-2 focus-within:ring-blue-500 focus-within:border-blue-500">
+    <div className="border border-neutral-200 focus-within:border-emerald-500/30 transition-colors">
       <MenuBar editor={editor} />
-      <EditorContent editor={editor} className="bg-white rounded-b-lg" />
+      <EditorContent editor={editor} className="bg-white" />
     </div>
   );
 }

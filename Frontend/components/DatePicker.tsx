@@ -42,7 +42,7 @@ export default function CustomDatePicker({ value, onChange, placeholder = 'Selec
         timeIntervals={15}
         dateFormat="MMMM d, yyyy h:mm aa"
         placeholderText={placeholder}
-        className="w-full px-4 py-3 pr-12 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all text-gray-900 bg-white"
+        className="w-full px-4 py-3 pr-12 border border-neutral-200 rounded-none focus:border-emerald-500/50 outline-none transition-all text-neutral-900 bg-white font-mono text-[11px] uppercase tracking-widest"
         isClearable
         minDate={new Date()}
         wrapperClassName="w-full"
