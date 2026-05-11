@@ -59,6 +59,7 @@ export default function QuestionModal({
   const [submitting, setSubmitting] = useState(false);
   const [isAdmin, setIsAdmin] = useState(false);
   const [deletingAnswerId, setDeletingAnswerId] = useState<string | null>(null);
+  const [ragLoading, setRagLoading] = useState(false);
 
   useEffect(() => {
     if (isOpen) {
@@ -146,6 +147,32 @@ export default function QuestionModal({
       .replace(/&nbsp;/g, ' ')
       .replace(/\s+/g, ' ')
       .trim();
+
+  const handleGenerateRagAnswer = async () => {
+    if (!question) return;
+    setRagLoading(true);
+    setShowAnswerForm(true);
+    try {
+      const query = `${question.title}\n\n${getPlainText(question.description)}`;
+      const { data } = await axios.post('/api/rag/answer', { query });
+      
+      let newDescription = data.answer.replace(/\n/g, '<br/>');
+      if (data.sources && data.sources.length > 0) {
+        newDescription += '<br/><br/><b>Sources:</b><ul>';
+        data.sources.forEach((s: any, i: number) => {
+          newDescription += `<li>[Source ${i + 1}] ${s.source || 'Document'}</li>`;
+        });
+        newDescription += '</ul>';
+      }
+      
+      setAnswerDescription(newDescription);
+      toast.success('RAG analysis complete');
+    } catch (error: any) {
+      toast.error(error.response?.data?.error || 'Failed to generate RAG answer');
+    } finally {
+      setRagLoading(false);
+    }
+  };
 
   const handleSubmitAnswer = async () => {
     if (!question || !getPlainText(answerDescription)) {
@@ -303,15 +330,24 @@ export default function QuestionModal({
               <h3 className="font-mono text-[10px] uppercase tracking-[0.2em] text-neutral-900 border-l-2 border-emerald-500 pl-3">
                 Knowledge Base / Answers [{answers.length}]
               </h3>
-              <button
-                onClick={() => setShowAnswerForm(!showAnswerForm)}
-                className={`w-full sm:w-auto px-6 py-2 border font-mono text-[10px] uppercase tracking-widest transition-colors ${showAnswerForm
-                    ? 'border-neutral-200 text-neutral-500 hover:bg-neutral-100'
-                    : 'bg-emerald-500 text-white border-emerald-600 hover:bg-emerald-600'
-                  }`}
-              >
-                {showAnswerForm ? '[DISCARD_INPUT]' : '[ADD_TO_DATABASE]'}
-              </button>
+              <div className="flex gap-2 w-full sm:w-auto">
+                <button
+                  onClick={handleGenerateRagAnswer}
+                  disabled={ragLoading}
+                  className="w-full sm:w-auto px-6 py-2 border font-mono text-[10px] uppercase tracking-widest transition-colors bg-[#111111] text-white border-[#111111] hover:bg-neutral-800 disabled:opacity-50"
+                >
+                  {ragLoading ? 'ANALYZING...' : '[GENERATE_RAG_ANSWER]'}
+                </button>
+                <button
+                  onClick={() => setShowAnswerForm(!showAnswerForm)}
+                  className={`w-full sm:w-auto px-6 py-2 border font-mono text-[10px] uppercase tracking-widest transition-colors ${showAnswerForm
+                      ? 'border-neutral-200 text-neutral-500 hover:bg-neutral-100'
+                      : 'bg-emerald-500 text-white border-emerald-600 hover:bg-emerald-600'
+                    }`}
+                >
+                  {showAnswerForm ? '[DISCARD_INPUT]' : '[ADD_TO_DATABASE]'}
+                </button>
+              </div>
             </div>
 
             {/* Answer Form */}
